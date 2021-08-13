@@ -48,15 +48,16 @@ Route::group([ 'namespace' => 'FrontApi'], function () {
 
 
 ########################### bigin subcategorys#############################
-Route::get('/maincategorys/{id}', 'MainCategoryController@getsubCategoryWithId')->middleware('cheeklang');
+Route::get('/subcategorys/{maincategory_id}', 'MainCategoryController@getsubCategoryWithId')->middleware('cheeklang');
 
 
 ########################### end subcategorys #############################
 
 
     ########################### bigin vendors #############################
-    Route::get('/vendor/{id}','VendorController@getAllVendorsWithCatrgoryID');
-
+    Route::get('/vendors/{id}','VendorController@getAllVendorsWithsubCatrgoryID');
+    
+    Route::get('/vendor-of-product-of-subctgory/{subCatgory_id}','VendorController@getVendorOfProduct')->middleware('cheeklang');;
 
     ########################### end vendors #############################
 
@@ -81,4 +82,4 @@ Route::group(
    
  
   
-   ########################### end maincategorys #############################
+   ########################### end maincategorys ############################

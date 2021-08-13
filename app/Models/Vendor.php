@@ -53,6 +53,9 @@ public function category(){
     return $this->belongsTo(MainCategorie::class,'main_categorie_id','id');
   }
 
+  public function products(){
+    return $this->hasMany(Product::class,'vendor_id','id');
+  }
 
 
 

@@ -57,4 +57,8 @@ class MainCategorie extends Model
         return $this->hasMany(SubCategorie::class,'main_categorie_id','id');
       }
 
+      public function proudcts(){
+        return $this->hasMany(Product::class,'main_categorie_id','id');
+      }
+
 }

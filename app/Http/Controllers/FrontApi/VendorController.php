@@ -4,7 +4,9 @@ namespace App\Http\Controllers\FrontApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\MainCategorie;
+use App\Models\Product;
 use App\Models\SubCategorie;
+use App\Models\Vendor;
 use App\Traits\GeneralTrait;
 use Exception;
 
@@ -12,23 +14,22 @@ class VendorController extends Controller
 {
     use GeneralTrait;
     
- public function getAllVendorsWithCatrgoryID($id){
+ public function getAllVendorsWithsubCatrgoryID($id){
 
   
     try{
-        $subCatgory_id=SubCategorie::find($id)->mainCategory;
-        
-        $category=MainCategorie::find($subCatgory_id['id']);
-        
-          if(isset($category)){
-         $vendors= $category->vendors()->active()->get();
+        $mainCategory=SubCategorie::find($id)->mainCategory;
+      
+          if(isset($mainCategory)){
+             
+         $vendors= $mainCategory->vendors()->active()->get();
          
          return $this->returnData('vendors',$vendors);
 
            
         }
          else 
-        return $this->eturnError('404', 'هذا القسم غير موجود');
+        return $this->returnError('404', 'هذا القسم غير موجود');
 
     }
 
@@ -40,8 +41,48 @@ class VendorController extends Controller
    
 
  }
+  
 
+ public function getVendorOfProduct($subcategry_id)
+ {  
+    try{
 
+       $subcatgory= SubCategorie::find($subcategry_id);
+   
+      if(!$subcatgory)
+      return $this->returnError('404', 'هذا القسم غير موجود');
+      if($subcatgory->translation_of==0)
+        $products= $subcatgory->products;
+      else{
+       $translation_of=$subcatgory->translation_of;
+       $subcatgory=SubCategorie::find($translation_of);
+       if(!$subcatgory)
+       return $this->returnError('404', 'هذا القسم غير موجود');
+       
+      }
+  
+       $products=$subcatgory->products()->where(['translation_lang' => get_defoult_langug(), 'active' => 1])->get();
+       
+        
+       if(isset($products)&& $products->count()>0){
+         $vendors=[];
+       foreach($products as $product){
+        $vendors=[Vendor::find($product->vendor_id)];
+       }
+       return $this->returnData('vendors',$vendors);
+     }
+     else
+     return $this->returnError(404,"لايوجد تجار في هذا القسم");
+     
+
+    }
+    catch(Exception $exp){
+      
+      return $this->returnError(500,'حدث خطاء ماء');
+    }
+    
+ }
 
 
 }
+
