@@ -83,6 +83,15 @@ class VendorController extends Controller
     
  }
 
+ public function getProuductWithVendor($vendo_id){
+
+  $products=Vendor::find($vendo_id)->products;
+  return $this->returnData('vendors',$products);
+
+
+  }
+
+
 
 }
 
