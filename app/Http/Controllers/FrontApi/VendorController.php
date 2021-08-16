@@ -83,15 +83,23 @@ class VendorController extends Controller
     
  }
 
- public function getProuductWithVendor($vendo_id){
-
-  $products=Vendor::find($vendo_id)->products;
-  return $this->returnData('vendors',$products);
 
 
-  }
+  public function getProductofVendor($vendor_id){
+    try{
+      
+      $vendor=Vendor::find($vendor_id);
+      if(!$vendor)
+      return $this->returnError('404', 'هذا القسم غير موجود');
+       $products=$vendor->products;
+       return $products;
+    }
+    catch(Exception $exp){
 
-
+    }
+    
+ 
 
 }
 
+}

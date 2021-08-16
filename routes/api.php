@@ -28,10 +28,10 @@ Route::group(['namespace' => 'UserApi'], function () {
     Route::post('/register', 'AuthController@register');
     Route::post('/logout', 'AuthController@logout');
     Route::post('/cheekToken', 'AuthController@cheekToken');
-    Route::post('/updateProfile','AuthController@updateProfile');
+    Route::post('/updateProfile', 'AuthController@updateProfile');
     Route::post('/password/email', 'ForgotPasswordRequestController@sendResetLinkEmail')->middleware('cheeklang');;
     Route::post('/password/reset', 'ResetPasswordRequestController@reset')->middleware('cheeklang');
-    
+
 
     ########################### end  auth user #############################
 
@@ -39,25 +39,22 @@ Route::group(['namespace' => 'UserApi'], function () {
 
 
 
-Route::group([ 'namespace' => 'FrontApi'], function () {
-  ########################### bigin maincategorys#############################
+Route::group(['namespace' => 'FrontApi'], function () {
+    ########################### bigin maincategorys#############################
     Route::get('/maincategorys', 'MainCategoryController@getAllCategory')->middleware('cheeklang');
+    ########################### end maincategorys #############################
 
 
- ########################### end maincategorys #############################
-
-
-########################### bigin subcategorys#############################
-Route::get('/subcategorys/{maincategory_id}', 'MainCategoryController@getsubCategoryWithId')->middleware('cheeklang');
-
-
-########################### end subcategorys #############################
+    ########################### bigin subcategorys#############################
+    Route::get('/subcategorys/{maincategory_id}', 'MainCategoryController@getsubCategoryWithId')->middleware('cheeklang');
+    Route::get('/getProuductWithSubCategory/{subcategry_id}/{vendor_id}','ProductController@getProuductWithSubCategory')->middleware('cheeklang');
+    ########################### end subcategorys #############################
 
 
     ########################### bigin vendors #############################
-    Route::get('/vendors/{id}','VendorController@getAllVendorsWithsubCatrgoryID');
-    
-    Route::get('/vendor-of-product-of-subctgory/{subCatgory_id}','VendorController@getVendorOfProduct')->middleware('cheeklang');;
+    Route::get('/vendors/{id}', 'VendorController@getAllVendorsWithsubCatrgoryID');
+    Route::get('/vendor-of-product-of-subctgory/{subCatgory_id}', 'VendorController@getVendorOfProduct')->middleware('cheeklang');
+    Route::get('/getProductofVendor/{vendor_id}', 'VendorController@getProductofVendor')->middleware('cheeklang');
 
     ########################### end vendors #############################
 

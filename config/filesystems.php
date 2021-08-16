@@ -57,23 +57,26 @@ return [
 
         'maincategories' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/admin/images/maincategories/',
+            //'root' => public_path() . '/assets/admin/images/maincategories/',
+            'root' => base_path() . '/assets/admin/images/maincategories/',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
        
         'subcategories' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/admin/images/subcategories/',
+            //'root' => public_path() . '/assets/admin/images/subcategories/',
+            'root' => base_path() . '/assets/admin/images/subcategories/',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
         'vendors' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/admin/images/vendors/',
+           //'root' => public_path() . '/assets/admin/images/vendors/', 
+           'root' => base_path() . '/assets/admin/images/vendors/',
             'url' => env('APP_URL').'/public',
-            'visibility' => 'public',
+             'visibility' => 'public',
         ],
 
 

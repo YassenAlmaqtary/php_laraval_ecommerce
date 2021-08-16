@@ -15,11 +15,11 @@ class ProductPhoto extends Model
 
 
     protected $hidden = [
-        'created_at', 'updated_at'
+        'product_id','created_at', 'updated_at'
     ];
 
     
-    public function photo(){
+    public function product(){
         
         return $this->belongsTo(Product::class,'product_id','id');
         
