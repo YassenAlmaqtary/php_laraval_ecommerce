@@ -51,9 +51,7 @@ class VendorController extends Controller
    
       if(!$subcatgory)
       return $this->returnError('404', 'هذا القسم غير موجود');
-      if($subcatgory->translation_of==0)
-        $products= $subcatgory->products;
-      else{
+      if($subcatgory->translation_of!=0){
        $translation_of=$subcatgory->translation_of;
        $subcatgory=SubCategorie::find($translation_of);
        if(!$subcatgory)
@@ -66,9 +64,14 @@ class VendorController extends Controller
         
        if(isset($products)&& $products->count()>0){
          $vendors=[];
-       foreach($products as $product){
-        $vendors=[Vendor::find($product->vendor_id)];
-       }
+      
+      foreach($products as $index=>$product){
+      
+        $vendors[$index]=Vendor::find($product->vendor_id);
+
+      }
+      
+      
        return $this->returnData('vendors',$vendors);
      }
      else

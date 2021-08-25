@@ -34,13 +34,13 @@ class ProductController extends Controller
          $products_id=$subcatgory->products()->where(['translation_lang' => get_defoult_langug(), 'active' => 1,'vendor_id'=>$vendor_id])->select('id')->get();
          if(isset($products_id)&& $products_id->count()>0){
           $products=[];
-        foreach($products_id as $product){
-         $products=[Product::with(['Subctegory'=>function($qury){
+        foreach($products_id as$index=>$product){
+         $products[$index]=Product::with(['Subctegory'=>function($qury){
              $qury->select('name','id');
          },
          'photos'=>function($qury){
            $qury->select('path','product_id');
-         }])->find($product->id)];
+         }])->find($product->id);
         }
       
         
