@@ -66,8 +66,9 @@ class VendorController extends Controller
          $vendors=[];
       
       foreach($products as $index=>$product){
-      
-        $vendors[$index]=Vendor::find($product->vendor_id);
+         $vendor=Vendor::find($product->vendor_id);
+        if(nullSercheValueincollect($vendors,$vendor))
+         $vendors[$index]=$vendor;
 
       }
       

@@ -46,3 +46,16 @@ function removeImage($path){
    
   return ($value!=null)?asset($value):"";
 } 
+
+
+function nullSercheValueincollect($array,$value){
+
+   $statues=true;
+   foreach($array as $val ){
+     if($val==$value){
+     $statues=false;
+     break;
+     }
+   }
+   return $statues;
+}
