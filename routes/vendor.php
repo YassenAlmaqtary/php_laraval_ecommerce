@@ -27,6 +27,25 @@ Route::group(['namespace'=>'Vendor'], function () {
   });
 
  ################# enid vendor ###############
+ 
+
+ ################# start product ###############
+ Route::resource('product', 'ProdcutControllerProduct',[
+  
+   'names' => [
+      'index'=>'vendor.product.index',
+      'create' => 'vendor.product.create',
+      'store' => 'vendor.product.store',
+      'edit' => 'vendor.product.edit',
+      'update' => 'vendor.product.update',
+      'destroy' => 'vendor.product.delete',
+      ] 
+ ]);
+
+
+
+ ################# enid product ###############
+
 
 
 });

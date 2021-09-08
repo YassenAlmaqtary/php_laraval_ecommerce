@@ -79,7 +79,7 @@
                                                                 @csrf
                                                             </form>
 
-                                                            <a href="{{route('admin.cstegorys.show',$vendors->id)}}"
+                                                            <a href="#"
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                                 الاقسام الفرعية      
                                                             </a>     

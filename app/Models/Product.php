@@ -16,7 +16,7 @@ class Product extends Model
 
 
     protected $hidden = [
-        'created_at', 'updated_at','main_categorie_id','sub_categorie_id'
+        'created_at', 'updated_at','main_categorie_id','sub_categorie_id','vendor_id'
     ];
 
 
@@ -31,7 +31,7 @@ class Product extends Model
     public function scopeSelection($qury)
     {
 
-        return $qury->select('id','translation_lang', 'name', 'slug', 'active','price','quntity');
+        return $qury->select('id','translation_lang','vendor_id' ,'name','description', 'slug', 'active','price','quntity','main_categorie_id','sub_categorie_id');
     }
 
 

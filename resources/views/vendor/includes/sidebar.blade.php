@@ -12,21 +12,20 @@
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="{{route('vendor.vendors')}}"
-                                          data-i18n="nav.dash.ecommerce"> التفاصيل </a>
-                  
+                                          data-i18n="nav.dash.ecommerce"> التفاصيل </a>   
                 </ul>
             </li>
             <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">test  </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">المنتجات</span>
                     <span
                         class="badge badge badge-warning  badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href=""
+                    <li class="active"><a class="menu-item" href="{{route('vendor.product.index')}}"
                                           data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            طالب </a>
+                    <li><a class="menu-item" href="{{route('vendor.product.create')}}" data-i18n="nav.dash.crypto">أضافة منتج
+                            </a>
                     </li>
                 </ul>
             </li>

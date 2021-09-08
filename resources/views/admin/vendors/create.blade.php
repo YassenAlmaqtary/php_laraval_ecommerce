@@ -230,6 +230,7 @@
         $("#pac-input").focusin(function() {
             $(this).val('');
         });
+        
         $('#latitude').val('');
         $('#longitude').val('');
         // This example adds a search box to a map, using the Google Place Autocomplete
@@ -238,9 +239,10 @@
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
         function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 24.740691, lng: 46.6528521 },
+                center: {lat: 15.369445, lng: 44.191006},
                 zoom: 13,
                 mapTypeId: 'roadmap'
             });
@@ -392,6 +394,7 @@
                 map.fitBounds(bounds);
             });
         }
+        
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
@@ -409,6 +412,10 @@
             $("#longitude").val(Lng);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&libraries=places&callback=initAutocomplete&language=ar&region=EG
+
+    
+    
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqxl_LGeukHOR8dh3tcOOYHHmwNol_LBg&libraries=places&callback=initAutocomplete&language=ar&region=YE
          async defer"></script>
     @stop
