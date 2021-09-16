@@ -38,13 +38,31 @@ Route::group(['namespace'=>'Vendor'], function () {
       'store' => 'vendor.product.store',
       'edit' => 'vendor.product.edit',
       'update' => 'vendor.product.update',
+      'show'=>'vendor.product.show',
       'destroy' => 'vendor.product.delete',
       ] 
  ]);
 
-
-
  ################# enid product ###############
+
+
+
+
+ ################# start photos ###############
+ Route::resource('photo', 'PhotosController',[
+  
+   'names' => [
+      'index'=>'vendor.photo.index',
+      'create' => 'vendor.photo.create',
+      'store' => 'vendor.photo.store',
+      'edit' => 'vendor.photo.edit',
+      'update' => 'vendor.photo.update',
+      'show'=>'vendor.photo.show',
+      'destroy' => 'vendor.photo.delete',
+      ] 
+ ]);
+
+ ################# enid photos ###############
 
 
 

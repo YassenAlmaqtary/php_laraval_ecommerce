@@ -27,17 +27,20 @@
                     <li><a class="menu-item" href="{{route('vendor.product.create')}}" data-i18n="nav.dash.crypto">أضافة منتج
                             </a>
                     </li>
+                    <li><a class="menu-item" href="{{route('vendor.photo.create')}}" data-i18n="nav.dash.crypto">أضافة صورة للمنتج
+              </a>
+      </li>
                 </ul>
             </li>
             <li class="nav-item">
                 <a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">تذاكر المراسلات   </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">تعديل المنتج</span>
                     <span
                         class="badge badge badge-danger  badge-pill float-right mr-2">0</span>
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href=""
-                                          data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
+                     data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
                     </li>
                 </ul>
             </li>

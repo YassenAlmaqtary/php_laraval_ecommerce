@@ -10,15 +10,16 @@ class Product extends Model
 
     protected  $fillable = [
         'id','vendor_id' ,'main_categorie_id','sub_categorie_id', 
-        'translation_lang', 'translation_of', 'name','description', 'slug', 
-        'price','quntity','activ','created_at', 'updated_at',
+        'translation_lang', 'translation_of', 'name','description','slug', 
+        'price','descount','quntity','activ','created_at', 'updated_at',
     ];
 
 
     protected $hidden = [
         'created_at', 'updated_at','main_categorie_id','sub_categorie_id','vendor_id'
     ];
-
+    
+    public $timestamps =true;
 
     public function scopeActive($qury)
     {
@@ -31,7 +32,7 @@ class Product extends Model
     public function scopeSelection($qury)
     {
 
-        return $qury->select('id','translation_lang','vendor_id' ,'name','description', 'slug', 'active','price','quntity','main_categorie_id','sub_categorie_id');
+        return $qury->select('id','translation_lang','vendor_id' ,'name','description', 'slug', 'active','price','descount','quntity','main_categorie_id','sub_categorie_id');
     }
 
 

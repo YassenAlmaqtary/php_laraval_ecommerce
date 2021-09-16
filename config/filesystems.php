@@ -81,8 +81,8 @@ return [
 
         'products' => [
             'driver' => 'local',
-           //'root' => public_path() . '/assets/admin/images/products/', 
-           'root' => base_path() . '/assets/admin/images/products/',
+           'root' => public_path() . '/assets/admin/images/products/', 
+           //'root' => base_path() . '/assets/admin/images/products/',
             'url' => env('APP_URL').'/public',
              'visibility' => 'public',
         ],

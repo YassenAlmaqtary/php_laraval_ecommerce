@@ -49,6 +49,7 @@ class VendorController extends Controller
 
         try {
 
+
             if (!$request->has('active'))
                 $request->request->add(['active' => 0]);
             else

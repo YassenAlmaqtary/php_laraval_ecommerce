@@ -50,6 +50,7 @@
                                             <th> اسم المنتج </th>
                                             <th>الوصف</th>
                                             <th>السعر</th>
+                                            <th>التخفيض</th>
                                             <th>اسم الشركة</th>
                                             <th>الكمية </th>
                                             <th>الحالة</th>
@@ -65,6 +66,11 @@
                                                     <td>{{$product->name}}</td>
                                                     <td>{{$product->description}}</td>
                                                     <td>{{$product->price}}</td>
+                                                    <td>@if ($product->descount!=null)
+                                                        {{$product->descount}}
+                                                    @else
+                                                        لايوجد تخفيظ
+                                                    @endif</td>
                                                     <td>{{$product->vendor->company_name}}</td> 
                                                     <td>{{$product->quntity}}</td>
                                                     <td>{{$product->getActive()}}</td>
@@ -73,31 +79,31 @@
                                                     <td>
                                                         <div class="btn-group" role="group"
                                                              aria-label="Basic example">
-                                                            <a href="{{route('vendor.vendors.edit',$product->id)}}" class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                            <a href="{{route('vendor.product.edit',$product->id)}}" class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
 
 
                                                             <a href="" onclick="event.preventDefault();
                                                             document.getElementById('form').submit();" class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"> حذف </a>
                                                               
-                                                            <form id="form" action="{{route('vendor.vendors.delete',$product->id)}}" method="POST" class="d-none">
+                                                            <form id="form" action="{{route('vendor.product.delete',$product->id)}}" method="POST" class="d-none">
                                                                 @method('delete')
                                                                 @csrf
                                                             </form>
 
-                                                            <a href="{{route('admin.cstegorys.show',$product->id)}}"
+                                                            <a href="{{route('vendor.photo.show',$product->id)}}"
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                                عرض صور المنتجات   
                                                             </a>     
 
-                                                          {{-- <a href=""
+                                                          {{--<a href=""
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                 @if($vendors->active == 0)
+                                                                 @if($product->active == 0)
                                                                      تفعيل
                                                                      @else
                                                                      الغاء تفعيل
                                                                  @endif
                                                              </a>
-                                                            --}}
+                                                          --}}
                                                         </div>
                                                     </td>
                                                 </tr>  

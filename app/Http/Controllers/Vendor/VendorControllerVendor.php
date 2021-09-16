@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use App\Notifications\VendorCreated;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -59,7 +60,6 @@ class VendorControllerVendor extends Controller
     public function store(VendorRequest $request)
     {
 
-
         try {
 
             if (!$request->has('active'))
@@ -91,7 +91,7 @@ class VendorControllerVendor extends Controller
 
             return redirect()->route('get.vendor.login')->with(['success' => 'تم الحفظ بنجاح']);
         } catch (\Exception $ex) {
-
+            removeImage($filePath);
             return redirect()->route('vendor.vendors.create')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -164,7 +164,7 @@ class VendorControllerVendor extends Controller
             if ($request->has('logo')) {
                 removeImage($filePath);
                 $filePath = uploadImage('vendors', $request->logo);
-                Vendor::where('id', $id)->update(['logo' => $filePath,]);
+                Vendor::where('id', $id)->update(['logo' => $filePath,'updated_at'=>Carbon::now(),]);
             }
 
             $data = $request->except('_token', 'id', 'logo', 'password','_method','latitude','longitude');
@@ -181,7 +181,6 @@ class VendorControllerVendor extends Controller
 
         } 
         catch (Exception $exp) {
-            return $exp; 
             DB::rollback();
             return redirect()->route('vendor.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 

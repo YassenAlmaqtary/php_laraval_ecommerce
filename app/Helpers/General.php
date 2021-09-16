@@ -69,7 +69,6 @@ function removeMultiImage($paths){
  
 
 
-
  function get_url_image($value){
    
   return ($value!=null)?asset($value):"";

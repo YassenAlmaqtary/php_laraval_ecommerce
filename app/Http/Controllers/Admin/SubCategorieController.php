@@ -8,6 +8,7 @@ use App\Models\MainCategorie;
 use App\Models\SubCategorie;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Claims\Subject;
 
@@ -78,7 +79,9 @@ class SubCategorieController extends Controller
                     'translation_of' => 0,
                     'name' => $default_category['name'],
                     'slug' => '/' . $default_category['name'],
-                    'photo' => $filePath
+                    'photo' => $filePath,
+                    'created_at'=>Carbon::now(),
+                    'updated_at'=>Carbon::now(),
                 ]
 
             );
@@ -104,7 +107,9 @@ class SubCategorieController extends Controller
                         'translation_of' => $default_category_id,
                         'name' => $subcategory['name'],
                         'slug' => '/' . $subcategory['name'],
-                        'photo' => $filePath
+                        'photo' => $filePath,
+                        'created_at'=>Carbon::now(),
+                        'updated_at'=>Carbon::now(),
 
                     ];
                 }
@@ -207,6 +212,8 @@ class SubCategorieController extends Controller
                'active'=>$request->active,
                'photo'=>$filePath,
                'slug' => '/'.$subCategory['name'],
+               //'created_at'=>Carbon::now(),
+               'updated_at'=>Carbon::now(),
               ]
             );
               $categorys=$sub_category->categorys;
@@ -220,7 +227,9 @@ class SubCategorieController extends Controller
                  
                 'id'=>  $category['id'],
                 'main_categorie_id'=> $category['main_categorie_id'],   
-                'photo'=>$filePath, 
+                'photo'=>$filePath,
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(), 
                 ]
                 );
     

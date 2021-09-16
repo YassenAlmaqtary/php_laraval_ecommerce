@@ -134,7 +134,22 @@
                                                            @enderror    
                                                         
                                                     </div>
-                                                </div> 
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1"> التخفيضات {{__('messages.'.$lang -> abbr)}} </label>
+                                                        <input type="text" value="" id="name"
+                                                               class="form-control"
+                                                               name="product[{{$index}}][descount]">
+                                                           @error("product.$index.descount")
+                                                           <span class="text-danger">{{$message}}</span> 
+                                                           @enderror    
+                                                        
+                                                    </div>
+                                                </div>  
+                                               
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">الكمية {{__('messages.'.$lang -> abbr)}} </label>

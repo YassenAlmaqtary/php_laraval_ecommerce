@@ -7,6 +7,7 @@ use App\Http\Requests\MainCategoryRequest;
 use App\Models\MainCategorie;
 use App\Models\SubCategorie;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 
@@ -70,7 +71,9 @@ class MainCategorieController extends Controller
                     'translation_of' => 0,
                     'name' => $default_category['name'],
                     'slug' => '/'.$default_category['name'],
-                    'photo' => $filePath
+                    'photo' => $filePath,
+                    'created_at'=>Carbon::now(),
+                    'updated_at'=>Carbon::now(),
                 ]
 
             );
@@ -92,7 +95,9 @@ class MainCategorieController extends Controller
                         'translation_of' => $default_category_id,
                         'name' => $category['name'],
                         'slug' =>'/'. $category['name'],
-                        'photo' => $filePath
+                        'photo' => $filePath,
+                        'created_at'=>Carbon::now(),
+                        'updated_at'=>Carbon::now(),
 
                     ];
                 }
@@ -110,9 +115,8 @@ class MainCategorieController extends Controller
         
         catch (\Exception $ex) {
             
-           // unlink($filePath);
             DB::rollBack();
-                 
+            removeImage($filePath);      
           return  redirect()->route('admin.cstegorys')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
         }
@@ -150,9 +154,7 @@ class MainCategorieController extends Controller
     public function edit($id)
     {
        try{
-        $mainCategory=MainCategorie::with('categorys')->selection()->find($id);
-    
-        
+        $mainCategory=MainCategorie::with('categorys')->selection()->find($id);     
         
         if(!$mainCategory)
          return redirect()->route('admin.cstegorys')->with(['error'=>'هذة القسم غير موجودة']);
@@ -203,6 +205,7 @@ class MainCategorieController extends Controller
            'active'=>$request->active,
            'photo'=>$filePath,
            'slug' => '/'.$category['name'],
+           'updated_at'=>Carbon::now(),
 
           ]);
           
@@ -217,6 +220,7 @@ class MainCategorieController extends Controller
             [
             'id'=>  $category['id'],
             'photo'=>$filePath, 
+            'updated_at'=>Carbon::now(),
             ]
             );
 
