@@ -181,8 +181,6 @@ class MainCategorieController extends Controller
           
         $main_category= MainCategorie::find($id);
         
-
-
         if(!$main_category)
           return redirect()->route('admin.cstegorys')->with(['error'=>'هذة القسم غير موجودة']);
           $category=$request->category[0];
@@ -231,16 +229,11 @@ class MainCategorieController extends Controller
            return  redirect()->route('admin.cstegorys')->with(['error' => 'لايمكن تعديل الصورة الا من اللغة الافتراضية فقط وهي اللغة العربية']);
 
           } 
-        
-        
-
-
           
           return  redirect()->route('admin.cstegorys')->with(['success' => 'تم التحديث بنجاح']);
        }
       catch(Exception $exp){
         
-
         return  redirect()->route('admin.cstegorys')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
       }

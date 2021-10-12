@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class photoRequest extends FormRequest
+class CardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,24 @@ class photoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'photo'=>'mimes:jpg,jpeg,png,svg',
-        ];
+        return  [
+            'product_id'=>'required|string',
+            'user_id'=>'required|string',
+            'quintity'=>'required|string',
+           
+  
+          ];
+
     }
 
-    public function messages(){
+
+    
+    public function messages()
+    {
         return [
-            'required'  => 'هذا الحقل مطلوب ',
+            'required'=>'هذا الحقل مطلوب',
+            'string'=>'الاسم يجب ان يكون احرف',
+
         ];
-    }
+    }   
 }

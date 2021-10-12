@@ -25,7 +25,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">صور المنتج</h4>
+                                <h4 class="card-title">لون المنتج</h4>
                                 <a class="heading-elements-toggle"><i
                                         class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
@@ -48,27 +48,27 @@
                                         <thead>
                                         <tr>
                                             <th> الاسم </th>
-                                            <th>الصورة</th>
+                                            <th>اللون</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                            @isset($photos)
-                                            @foreach ($photos as $photo)
+                                            @isset($color_arry)
+                                            @foreach ($color_arry as $color)
                                             <tr>
                                                 <td>{{$name_product}}</td>
-                                                <td><img style="width: 150px; height: 100px;" src="{{get_url_image($photo->path)}}"></td>
+                                                <td>{{$color['color']}}</td>
                                                 
                                                 <td>
                                                     <div class="btn-group" role="group"
                                                          aria-label="Basic example">
-                                                        <a href="{{route('vendor.photo.edit',$photo->id)}}" class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                        <a href="{{route('vendor.color.edit',$color['id'])}}" class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
 
 
                                                         <a href="" onclick="event.preventDefault();
                                                         document.getElementById('form').submit();" class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"> حذف </a>
                                                           
-                                                        <form id="form" action="{{route('vendor.photo.delete',$photo->id)}}" method="POST" class="d-none">
+                                                        <form id="form" action="{{route('vendor.color.delete',$color['id'])}}" method="POST" class="d-none">
                                                             @method('delete')
                                                             @csrf
                                                         </form>
@@ -96,13 +96,13 @@
                                     </table>
                                     <div class="justify-content-center d-flex"></div>
                                 </div>
-                        </div>
+                            
+                            </div>
+                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
-</div>
 
-    
 @endsection

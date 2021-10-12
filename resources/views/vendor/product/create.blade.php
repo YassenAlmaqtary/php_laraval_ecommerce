@@ -45,8 +45,7 @@
                                         <input type="hidden" value="{{$mamCategory_id}}" id="mamCategory_id" name="mamCategory_id">
                                         <input type="hidden" value="{{$vendor_id}}" id="vendor_id" name="vendor_id">
                                         <div class="row">
-                                           
-                                           
+                                        
                                             <div class="col-md-6">
                                                 
                                               <div class="form-group">
@@ -82,8 +81,6 @@
 
 
                                         </div>
-
-                                      
 
                                     
 

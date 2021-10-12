@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Card;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -76,6 +77,10 @@ public function sendPasswordResetNotification($token)
 }
 
 
+public function cards(){
+        
+    return $this->hasMany(Card::class,'user_id','id');
+  }
 
 
 

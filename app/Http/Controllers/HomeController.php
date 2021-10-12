@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -28,9 +25,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-
-   
-
-
 }

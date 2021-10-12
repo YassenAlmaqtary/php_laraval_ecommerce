@@ -28,10 +28,11 @@ Route::group(['namespace' => 'UserApi'], function () {
     Route::post('/register', 'AuthController@register');
     Route::post('/logout', 'AuthController@logout');
     Route::post('/cheekToken', 'AuthController@cheekToken');
+    Route::get('/profile-user','AuthController@profileUser')->middleware('assign.guard:api');
     Route::post('/updateProfile', 'AuthController@updateProfile');
     Route::post('/password/email', 'ForgotPasswordRequestController@sendResetLinkEmail')->middleware('cheeklang');;
     Route::post('/password/reset', 'ResetPasswordRequestController@reset')->middleware('cheeklang');
-
+    
 
     ########################### end  auth user #############################
 
@@ -48,6 +49,7 @@ Route::group(['namespace' => 'FrontApi'], function () {
     ########################### bigin subcategorys#############################
     Route::get('/subcategorys/{maincategory_id}', 'MainCategoryController@getsubCategoryWithId')->middleware('cheeklang');
     Route::get('/getProuductWithSubCategory/{subcategry_id}/{vendor_id}','ProductController@getProuductWithSubCategory')->middleware('cheeklang');
+    Route::get('/getColorWithId/{id}','ProductController@getColorWithId');
     ########################### end subcategorys #############################
 
 
@@ -55,28 +57,17 @@ Route::group(['namespace' => 'FrontApi'], function () {
     Route::get('/vendors/{id}', 'VendorController@getAllVendorsWithsubCatrgoryID');
     Route::get('/vendor-of-product-of-subctgory/{subCatgory_id}', 'VendorController@getVendorOfProduct')->middleware('cheeklang');
     Route::get('/getProductofVendor/{vendor_id}', 'VendorController@getProductofVendor')->middleware('cheeklang');
-
     ########################### end vendors #############################
+
+    ########################### bigin Card #############################
+    Route::post('/add-to-card', 'CardController@addeToCard');
+    Route::get('/get-may-card', 'CardController@getMayCard');
+   
+    ########################### end card #############################
 
 });
 
 
 
-
-
-Route::group(
-    ['middleware' => 'assign.guard:api'],
-    function () {
-        ###########################  informtion-profile   #############################
-        Route::get(
-            '/profile-user',
-            function () {
-                return Auth::user();
-            }
-        );
-    }
-);
-   
  
   
-   ########################### end maincategorys ############################

@@ -46,11 +46,7 @@
                                     <form class="form" action="{{route('vendor.photo.store')}}"
                                           method="POST"
                                           enctype="multipart/form-data">
-                                       
                                         @csrf
-                                    
-                                    
-                                        </div>
                                         <div class="form-group">
                                             <label> صورة المنتجات </label>
                                             <label id="projectinput7" class="file center-block">
@@ -62,26 +58,68 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="projectinput2"> أختر المنتجات </label>
-                                                <select name="product" class="select2 form-control">
-                                                    <optgroup label=" من فضلك اختر منتجاتك">
-                                                        @if($Products && $Products-> count() > 0)
-                                                            @foreach($Products as $product)
-                                                                <option
-                                                                    value="{{$product->id }}">{{$product->name}}</option>
-                                                            @endforeach
-                                                        @endif
-                                                    </optgroup>
-                                                </select>
-                                                @error('product')
-                                                <span class="text-danger"> {{$message}}</span>
-                                                @enderror
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput2"> أختر المنتجات </label>
+                                                    <select name="product" class="select2 form-control">
+                                                        <optgroup label=" من فضلك اختر منتجاتك">
+                                                            @if($Products && $Products-> count() > 0)
+                                                                @foreach($Products as $product)
+                                                                    <option
+                                                                        value="{{$product->id }}">{{$product->name}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </optgroup>
+                                                    </select>
+                                                    @error('product')
+                                                    <span class="text-danger"> {{$message}}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
+    
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput2"> أختر الوان للمنتج </label>
+                                                    <select name="colors[]" class="select2 form-control" multiple>
+                                                        <optgroup label=" من فضلك اختر اللون">
+                                                            @if($colors && $colors-> count() > 0)
+                                                                @foreach($colors as $color)
+                                                                    <option
+                                                                        value="{{$color->hex }}">{{$color->name}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </optgroup>
+                                                    </select>
+                                                    @error('colors')
+                                                    <span class="text-danger"> {{$message}}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+    
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="projectinput2"> أختر حجم للمنتج </label>
+                                                    <select name="sizes[]" class="select2 form-control" multiple>
+                                                        <optgroup label=" من فضلك اختر الحجم">
+                                                            @if($sizes && $sizes-> count() > 0)
+                                                                @foreach($sizes as $size)
+                                                                    <option
+                                                                        value="{{$size->name }}">{{$size->name}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </optgroup>
+                                                    </select>
+                                                    @error('sizes')
+                                                    <span class="text-danger"> {{$message}}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+    
+
                                         </div>
-
-
+                                </div>
+                                       
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                     onclick="history.back();">

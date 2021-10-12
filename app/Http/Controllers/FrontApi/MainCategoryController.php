@@ -34,7 +34,6 @@ class MainCategoryController extends Controller
       try {
          $mainCategorys = MainCategorie::find($mainCatgory_id);
         
-
          if (!$mainCategorys)
             return $this->returnError('E001', 'هذا الثسم الرئيسي غير موجود');
          

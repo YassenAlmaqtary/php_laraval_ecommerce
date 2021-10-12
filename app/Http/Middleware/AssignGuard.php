@@ -24,7 +24,7 @@ class AssignGuard extends BaseMiddleware
   {
     if ($guard != null) {
 
-      $token = $request->header('auth-token');
+      $token= $request->header('auth-token');
       $request->headers->set('auth-token', (string) $token, true);
       $request->headers->set('Authorization', 'Bearer ' . $token, true);
 

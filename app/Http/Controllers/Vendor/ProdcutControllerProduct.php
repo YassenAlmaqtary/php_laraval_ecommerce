@@ -27,8 +27,7 @@ class ProdcutControllerProduct extends Controller
      */
     public function index()
     {
-
-        $products = Product::where(['vendor_id' => Auth::user()->id,'translation_lang'=>get_defoult_langug()])->selection()->get();
+        $products = Product::where(['vendor_id' => Auth::user()->id, 'translation_lang' => get_defoult_langug()])->selection()->get();
         //return $products;
         return  view('vendor.product.index', compact('products'));
     }
@@ -61,8 +60,8 @@ class ProdcutControllerProduct extends Controller
     public function store(ProductRequest $request)
     {
         try {
-           
-           
+
+
             $product = collect($request->product);
             $filter = $product->filter(
                 function ($value, $key) {
@@ -82,34 +81,36 @@ class ProdcutControllerProduct extends Controller
 
             $default_product_id = Product::insertGetId(
                 [
-                    'name'=> $default_product['name'],
+                    'name' => $default_product['name'],
                     'translation_of' => 0,
-                    'vendor_id'=>$request->vendor_id,
-                    'main_categorie_id'=>$request->mamCategory_id,
-                    'sub_categorie_id'=>$request->sub_categories_id,
+                    'vendor_id' => $request->vendor_id,
+                    'main_categorie_id' => $request->mamCategory_id,
+                    'sub_categorie_id' => $request->sub_categories_id,
                     'description' => $default_product['description'],
                     'price' => $default_product['price'],
-                    'descount'=>$default_product['descount'],
+                    'descount' => $default_product['descount'],
                     'quntity' => $default_product['quntity'],
-                    'slug' => '/'. $default_product['name'],
+                    'slug' => '/' . $default_product['name'],
                     'translation_lang' => $default_product['abbr'],
                     'active' => $default_product['active'],
-                    'created_at'=>Carbon::now(),
-                    'updated_at'=>Carbon::now(),
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]
 
             );
-          
+
 
             $file_arry = [];
 
             if (count($filePathes) > 0) {
 
                 foreach ($filePathes as $path) {
-                    $file_arry[] = ["product_id" => $default_product_id, "path" => $path,'created_at'=>Carbon::now(),
-                    'updated_at'=>Carbon::now()];
+                    $file_arry[] = [
+                        "product_id" => $default_product_id, "path" => $path, 'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ];
                 }
-                
+
                 ProductPhoto::insert($file_arry);
             }
 
@@ -118,40 +119,42 @@ class ProdcutControllerProduct extends Controller
                     return $value['abbr'] != get_defoult_langug();
                 }
             );
-           
+
 
             if (isset($products) && $products->count()) {
                 $product_arry = [];
                 foreach ($products as $product) {
                     $product_arry[] = [
                         'name' => $product['name'],
-                        'vendor_id'=>$request->vendor_id,
-                        'main_categorie_id'=>$request->mamCategory_id,
-                        'sub_categorie_id'=>$request->sub_categories_id,
+                        'vendor_id' => $request->vendor_id,
+                        'main_categorie_id' => $request->mamCategory_id,
+                        'sub_categorie_id' => $request->sub_categories_id,
                         'translation_of' => $default_product_id,
                         'description' => $product['description'],
                         'price' => $product['price'],
-                        'descount'=>$product['descount'],
+                        'descount' => $product['descount'],
                         'quntity' => $product['quntity'],
-                        'slug' => '/'. $product['name'],
+                        'slug' => '/' . $product['name'],
                         'translation_lang' => $product['abbr'],
                         'active' => $product['active'],
-                        'created_at'=>Carbon::now(),
-                        'updated_at'=>Carbon::now(),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
                     ];
                 }
-                
-               
-                $products_id=Product::insertGetId($product_arry[0]);
-                
-                 
+
+
+                $products_id = Product::insertGetId($product_arry[0]);
+
+
                 $file_arry = [];
 
                 if (count($filePathes) > 0) {
-    
+
                     foreach ($filePathes as $path) {
-                        $file_arry[] = ["product_id"=> $products_id,"path" => $path,'created_at'=>Carbon::now(),
-                        'updated_at'=>Carbon::now(),];
+                        $file_arry[] = [
+                            "product_id" => $products_id, "path" => $path, 'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now(),
+                        ];
                     }
                     ProductPhoto::insert($file_arry);
                 }
@@ -159,15 +162,11 @@ class ProdcutControllerProduct extends Controller
 
             DB::commit();
             return  redirect()->route('vendor.product.index')->with(['success' => 'تم الحفظ بنجاح']);
-        } 
-        catch (Exception $exp) {
+        } catch (Exception $exp) {
 
             DB::rollBack();
-             removeMultiImage($filePathes);
+            removeMultiImage($filePathes);
             return  redirect()->route('vendor.product.create')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-
-           
-
         }
     }
 
@@ -179,8 +178,6 @@ class ProdcutControllerProduct extends Controller
      */
     public function show($id)
     {
-      
-      
     }
 
     /**
@@ -190,19 +187,19 @@ class ProdcutControllerProduct extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {  try{
-        $products=Product::find($id);
-        
-        if(!$products)
-        return redirect()->route('vendor.product.index')->with(['error'=>'هذة القسم غير موجودة']);
+    {
+        try {
+            $products = Product::find($id);
 
-        return view('vendor.product.ubdate',compact('products'));
+            if (!$products)
+                return redirect()->route('vendor.product.index')->with(['error' => 'هذة القسم غير موجودة']);
+
+            return view('vendor.product.ubdate', compact('products'));
+        } catch (Exception $exo) {
+            return  redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
-      catch(Exception $exo){
-        return  redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-      }
-    }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -212,43 +209,39 @@ class ProdcutControllerProduct extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        try{
-    
-           
-            $product_with_id=Product::find($id);
-            if(!$product_with_id)
-              return redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-             
-              $product= $request->product[0];
-              if (!$request->has('product.0.active'))
-                
-              $request->request->add(['active' => 0]);
-          else
-               $request->request->add(['active' => 1]);
+        try {
 
-               Product::where('id',$product_with_id->id)->update(
+
+            $product_with_id = Product::find($id);
+            if (!$product_with_id)
+                return redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+
+            $product = $request->product[0];
+            if (!$request->has('product.0.active'))
+
+                $request->request->add(['active' => 0]);
+            else
+                $request->request->add(['active' => 1]);
+
+            Product::where('id', $product_with_id->id)->update(
                 [
-                    'name'=> $product['name'],
+                    'name' => $product['name'],
                     'description' => $product['description'],
                     'price' => $product['price'],
-                    'descount'=>$product['descount'],
+                    'descount' => $product['descount'],
                     'quntity' => $product['quntity'],
-                    'slug' => '/'. $product['name'],
+                    'slug' => '/' . $product['name'],
                     'translation_lang' => $product['abbr'],
                     'active' => $request->active,
-                    'updated_at'=>Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]
 
-               ); 
-               return  redirect()->route('vendor.product.index')->with(['success' => 'تم التحديث بنجاح']);    
-                  
+            );
+            return  redirect()->route('vendor.product.index')->with(['success' => 'تم التحديث بنجاح']);
+        } catch (Exception $exp) {
+
+            return  redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-         
-        catch(Exception $exp){
-    
-            return  redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);  
-        }
-         
     }
 
     /**

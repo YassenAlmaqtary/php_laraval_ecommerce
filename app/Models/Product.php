@@ -66,8 +66,24 @@ class Product extends Model
 
 
      public function photos(){
-        
+
        return $this->hasMany(ProductPhoto::class,'product_id','id');
      }
+
+     public function cards(){
+
+      return $this->hasMany(Card::class,'product_id','id');
+    }
+
+    public function productColors(){
+
+      return $this->hasMany(ProductColor::class,'product_id','id');
+    }
+    
+    public function productSizes(){
+
+      return $this->hasMany(ProductSize::class,'product_id','id');
+    }
+
 
 }

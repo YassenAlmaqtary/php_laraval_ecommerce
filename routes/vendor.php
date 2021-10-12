@@ -59,10 +59,52 @@ Route::group(['namespace'=>'Vendor'], function () {
       'update' => 'vendor.photo.update',
       'show'=>'vendor.photo.show',
       'destroy' => 'vendor.photo.delete',
+      
       ] 
  ]);
 
  ################# enid photos ###############
+
+
+ 
+
+ ################# start color ###############
+ Route::resource('color', 'ColorController',[
+  
+   'names' => [
+      'index'=>'vendor.color.index',
+      'create' => 'vendor.color.create',
+      'store' => 'vendor.color.store',
+      'edit' => 'vendor.color.edit',
+      'update' => 'vendor.color.update',
+      'show'=>'vendor.color.show',
+      'destroy' => 'vendor.color.delete',
+      
+      ] 
+ ]);
+
+ ################# enid color ###############
+
+
+
+
+ ################# start size ###############
+ Route::resource('size', 'SizeController',[
+  
+   'names' => [
+      'index'=>'vendor.size.index',
+      'create' => 'vendor.size.create',
+      'store' => 'vendor.size.store',
+      'edit' => 'vendor.size.edit',
+      'update' => 'vendor.size.update',
+      'show'=>'vendor.size.show',
+      'destroy' => 'vendor.size.delete',
+      
+      ] 
+ ]);
+
+ ################# enid size ###############
+
 
 
 

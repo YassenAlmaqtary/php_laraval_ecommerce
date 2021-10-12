@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Expectation;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -176,5 +177,18 @@ class AuthController extends Controller
     
    
 
+   }
+
+
+   public function profileUser(){
+       try{
+        return $this->returnData('users',  Auth::user());
+       }
+       catch(Expectation $mes){
+        return $this->returnError('', 'Page must be refreshed');
+       }
+
+   
+    
    }
 }

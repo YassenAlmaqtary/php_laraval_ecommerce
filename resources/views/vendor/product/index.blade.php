@@ -93,7 +93,16 @@
                                                             <a href="{{route('vendor.photo.show',$product->id)}}"
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                                عرض صور المنتجات   
-                                                            </a>     
+                                                            </a>  
+                                                            
+                                                            <a href="{{route('vendor.color.show',$product->id)}}"
+                                                                class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                               عرض لون المنتجات   
+                                                            </a>  
+                                                            <a href="{{route('vendor.size.show',$product->id)}}"
+                                                                class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                               عرض حجم المنتجات   
+                                                            </a>  
 
                                                           {{--<a href=""
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
