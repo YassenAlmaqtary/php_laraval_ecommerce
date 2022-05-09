@@ -25,8 +25,7 @@ class LoginController extends Controller
 
     
    public function Login(LoginRequest $request){
-     
-        
+    
     $remember_me = $request->has('remember_me') ? true : false;
     
     if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {

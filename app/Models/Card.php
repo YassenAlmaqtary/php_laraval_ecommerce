@@ -11,11 +11,11 @@ class Card extends Model
 
 
     protected $fillable = [
-        'id','user_id', 'color','product_id','created_at','updated_at','quintity'
+        'id','vistorId', 'color','product_id','created_at','updated_at','quintity'
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at','user_id',
+        'created_at', 'updated_at','user_id','product_id'
     ];
     
 

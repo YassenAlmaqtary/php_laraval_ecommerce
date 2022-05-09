@@ -33,7 +33,6 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-
             'email.required' => 'البريد الإلكتروني مطلوب.',
             'email.email' => 'ادخل عنوان بريد إلكتروني صالح.',
             'password.required' => 'كلمة المرور مطلوبة.'

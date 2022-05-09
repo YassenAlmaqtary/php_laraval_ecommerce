@@ -25,7 +25,7 @@ class CardRequest extends FormRequest
     {
         return  [
             'product_id'=>'required|string',
-            'user_id'=>'required|string',
+            'vistorId'=>'required|string',
             'quintity'=>'required|string',
            
   

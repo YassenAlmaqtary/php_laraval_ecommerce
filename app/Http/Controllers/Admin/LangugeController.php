@@ -103,7 +103,7 @@ class LangugeController extends Controller
              if (!$request->has('active'))
                     $request->request->add(['active' => 0]);
     
-
+            return $languges;
             $languges->update($request->except(['_token']));
             
             return redirect()->route('admin.languges')->with(['success'=>'تم تعديل اللغة بنجاح']);

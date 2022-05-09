@@ -54,7 +54,7 @@
                                                         <label for="projectinput1"> اسم اللغة </label>
                                                         <input type="text" value="" id="name"
                                                                class="form-control"
-                                                               placeholder="ادخل اسم اللغة  "
+                                                               placeholder="ادخل اسم اللغة"
                                                                name="name">
                                                            @error('name')
                                                            <span class="text-danger">{{$message}}</span> 

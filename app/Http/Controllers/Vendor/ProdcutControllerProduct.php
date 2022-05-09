@@ -211,7 +211,6 @@ class ProdcutControllerProduct extends Controller
     {
         try {
 
-
             $product_with_id = Product::find($id);
             if (!$product_with_id)
                 return redirect()->route('vendor.product.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);

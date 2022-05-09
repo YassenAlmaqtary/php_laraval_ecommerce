@@ -16,7 +16,7 @@ class Product extends Model
 
 
     protected $hidden = [
-        'created_at', 'updated_at','main_categorie_id','sub_categorie_id','vendor_id'
+        'created_at', 'updated_at','main_categorie_id','sub_categorie_id','vendor_id',
     ];
     
     public $timestamps =true;

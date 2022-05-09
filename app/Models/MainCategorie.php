@@ -30,7 +30,6 @@ class MainCategorie extends Model
 
     public function scopeSelection($qury)
     {
-
         return $qury->select('id', 'translation_lang', 'name', 'photo', 'slug', 'active');
     }
 

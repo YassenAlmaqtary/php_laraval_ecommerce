@@ -111,7 +111,6 @@
                                                     </div>
                                                 </div> 
                                                 
-                                                
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">  وصف المنتجات {{__('messages.'.$products->translation_lang)}} </label>

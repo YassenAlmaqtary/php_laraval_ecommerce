@@ -15,13 +15,14 @@ class CheekLang
      */
     public function handle($request, Closure $next)
     {
-
-       set_Locale('ar');
-       if(isset($request->lange)){
-           $langs=getLanguges();
+        set_Locale('ar');
+       $lan= $request->header('lan');
+       $request->headers->set('lan', (string) $lan, true);
+       
+       if($request->hasHeader('lan')){
+          $langs=getLanguges();
            foreach($langs as $lang){
-                 
-               if($request->lange==$lang->abbr){
+               if($request->header('lan')==$lang->abbr){
                  set_Locale($lang->abbr);
                  return $next($request);
                }

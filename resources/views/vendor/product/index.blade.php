@@ -37,10 +37,10 @@
                                     </ul>
                                 </div>
                             </div>
-
+                
                             @include('vendor.includes.alerts.success')
                             @include('vendor.includes.alerts.errors')
-
+                
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
                                     <table

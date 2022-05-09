@@ -7,7 +7,6 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\SubCategorie;
-use Illuminate\Http\Request;
 use App\Traits\GeneralTrait;
 use Exception;
 

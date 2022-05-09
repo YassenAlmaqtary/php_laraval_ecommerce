@@ -61,9 +61,13 @@ Route::group(['namespace' => 'FrontApi'], function () {
 
     ########################### bigin Card #############################
     Route::post('/add-to-card', 'CardController@addeToCard');
-    Route::get('/get-may-card', 'CardController@getMayCard');
-   
-    ########################### end card #############################
+    Route::get('/get-may-card/{vistorid}', 'CardController@getMayCard');
+    Route::get('/get-vistorId','CardController@getVistorId');
+    Route::get('/get-count/{vistorid}','CardController@getCount');
+    Route::put('/ubdate-card/{id}','CardController@ubdatMyCard');
+    Route::put('/delete-card/{id}','CardController@deleteCard');
+    
+  ########################### end card #############################
 
 });
 

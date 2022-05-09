@@ -14,7 +14,6 @@ class MainCategoryController extends Controller
 
    public function getAllCategory()
    {
-
       $categorys = MainCategorie::where('translation_lang', get_defoult_langug())->select('id', 'name', 'photo', 'translation_of')->get();
       try {
          if (!$categorys)
@@ -29,8 +28,6 @@ class MainCategoryController extends Controller
 
    public function getsubCategoryWithId($mainCatgory_id)
    {
-
-
       try {
          $mainCategorys = MainCategorie::find($mainCatgory_id);
         

@@ -25,7 +25,6 @@ class VendorController extends Controller
          $vendors= $mainCategory->vendors()->active()->get();
          
          return $this->returnData('vendors',$vendors);
-
            
         }
          else 
